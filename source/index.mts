@@ -123,15 +123,13 @@ export default async function caxa({
     let stub =
       bash`
         #!/usr/bin/env sh
-        export CAXA_DIRECTORY="${
-          process.platform === "darwin" ? bash`$HOME/Library/Caches` : bash("${XDG_CACHE_HOME-$HOME/.cache}")
-        }/caxa"
+        export CAXA_TEMPORARY_DIRECTORY="$(dirname $(mktemp))/caxa"
         export CAXA_EXTRACTION_ATTEMPT=-1
         while true
         do
           export CAXA_EXTRACTION_ATTEMPT=$(( CAXA_EXTRACTION_ATTEMPT + 1 ))
-          export CAXA_LOCK="$CAXA_DIRECTORY/locks/${identifier}/$CAXA_EXTRACTION_ATTEMPT"
-          export CAXA_APPLICATION_DIRECTORY="$CAXA_DIRECTORY/applications/${identifier}/$CAXA_EXTRACTION_ATTEMPT"
+          export CAXA_LOCK="$CAXA_TEMPORARY_DIRECTORY/locks/${identifier}/$CAXA_EXTRACTION_ATTEMPT"
+          export CAXA_APPLICATION_DIRECTORY="$CAXA_TEMPORARY_DIRECTORY/applications/${identifier}/$CAXA_EXTRACTION_ATTEMPT"
           if [ -d "$CAXA_APPLICATION_DIRECTORY" ] 
           then
             if [ -d "$CAXA_LOCK" ] 
