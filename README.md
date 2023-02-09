@@ -37,6 +37,10 @@ That’s a miscommunication that I’ll address in the documentation.
 
 -->
 
+Original: https://github.com/leafac/caxa
+
+---
+
 <h1 align="center">caxa</h1>
 <h3 align="center">📦 Package Node.js applications into executable binaries 📦</h3>
 <p align="center">
@@ -142,20 +146,14 @@ Here’s [a real-world example of using caxa](https://github.com/courselore/cour
 Instead of calling caxa from the command line, you may prefer to write a program that builds your application, for example:
 
 ```typescript
-import caxa from "caxa";
-
-(async () => {
+import caxa from "caxa"
+;(async () => {
   await caxa({
     input: "examples/echo-command-line-parameters",
     output: "echo-command-line-parameters",
-    command: [
-      "{{caxa}}/node_modules/.bin/node",
-      "{{caxa}}/index.mjs",
-      "some",
-      "embedded arguments",
-    ],
-  });
-})();
+    command: ["{{caxa}}/node_modules/.bin/node", "{{caxa}}/index.mjs", "some", "embedded arguments"],
+  })
+})()
 ```
 
 You may need to inspect `process.platform` to determine in which operating system you’re running and come up with the appropriate parameters.
