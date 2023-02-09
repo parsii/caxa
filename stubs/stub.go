@@ -46,11 +46,6 @@ func main() {
 		log.Fatalf("caxa stub: Failed to parse JSON in footer: %v", err)
 	}
 
-	// cacheDirectory, err := os.UserConfigDir()
-	// if err != nil {
-	// 	log.Fatalf("caxa stub: Failed to get the user cache directory: %v", err)
-	// }
-
 	appDataDir, err := os.UserConfigDir()
 	if err != nil {
 		log.Fatalf("caxa stub: Failed to get the user cache directory: %v", err)
